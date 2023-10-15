@@ -3,7 +3,7 @@
   "lowCaseName": "smartrouting",
   "description": "Switch the context based on a (sub)domain and/or subfolder",
   "author": "Thomas Jakobi",
-  "version": "1.0.0",
+  "version": "1.0.0-pl2",
   "package": {
     "elements": {
       "plugins": [

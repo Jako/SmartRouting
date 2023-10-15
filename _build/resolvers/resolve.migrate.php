@@ -36,12 +36,12 @@ if ($object->xpdo) {
                     $newSetting = $modx->getObject('modSystemSetting', [
                         'key' => 'smartrouting.' . $settingKey
                     ]);
-                    if ($newSetting && $newSetting->get($settingKey) != $oldSetting->get($settingKey)) {
-                        $newSetting->set($settingKey, $oldSetting->get($settingKey));
+                    if ($newSetting && $newSetting->get('value') != $oldSetting->get('value')) {
+                        $newSetting->set('value', $oldSetting->get('value'));
                         if ($newSetting->save()) {
-                            $modx->log(xPDO::LOG_LEVEL_INFO, 'Migrated xrouting.' . $settingKey . ' setting to smartrouting. ' . $settingKey . ' setting.');
+                            $modx->log(xPDO::LOG_LEVEL_INFO, 'Migrated xrouting.' . $settingKey . ' setting to smartrouting.' . $settingKey . ' setting.');
                         } else {
-                            $modx->log(xPDO::LOG_LEVEL_ERROR, 'Could not migrate xrouting.' . $settingKey . ' setting to smartrouting. ' . $settingKey . ' setting.');
+                            $modx->log(xPDO::LOG_LEVEL_ERROR, 'Could not migrate xrouting.' . $settingKey . ' setting to smartrouting.' . $settingKey . ' setting.');
                         }
                     }
                 }
