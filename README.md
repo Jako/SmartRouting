@@ -1,4 +1,4 @@
-[![Default Lexicon](https://hosted.weblate.org/widgets/modx-extras/smartrouting/standard/svg-badge.svg)](https://hosted.weblate.org/projects/modx-extras/smartrouting/standard/)
+[![Default Lexicon](https://hosted.weblate.org/widget/modx-extras/smartrouting/standard/svg-badge.svg)](https://hosted.weblate.org/projects/modx-extras/smartrouting/standard/)
 
 # SmartRouting
 
