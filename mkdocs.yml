@@ -6,7 +6,7 @@ edit_uri: tree/master/docs
 repo_name: 'Jako/SmartRouting'
 repo_url: https://github.com/Jako/SmartRouting
 
-copyright: '&copy; 2023 <a href="https://github.com/Jako">Thomas Jakobi</a>'
+copyright: '&copy; 2023-2024 <a href="https://github.com/Jako">Thomas Jakobi</a>'
 
 nav:
 - Description: 'index.md'

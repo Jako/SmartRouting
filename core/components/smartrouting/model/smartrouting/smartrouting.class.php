@@ -2,7 +2,7 @@
 /**
  * SmartRouting
  *
- * Copyright 2023 by Thomas Jakobi - <office@treehillstudio.com>
+ * Copyright 2023-2024 by Thomas Jakobi - <office@treehillstudio.com>
  *
  * Based on the code of XRouting created by Christian Seel <office@seda.digital>
  *

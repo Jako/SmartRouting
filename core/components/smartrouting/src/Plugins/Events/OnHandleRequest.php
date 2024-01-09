@@ -19,7 +19,10 @@ class OnHandleRequest extends Plugin
      */
     public function init()
     {
-        if ($this->modx->context->get('key') == 'mgr') {
+        if ($this->modx->context->get('key') == 'mgr' ||
+            (defined('MODX_API_MODE') && MODX_API_MODE) ||
+            (defined('MODX_CONNECTOR_INCLUDED') && MODX_CONNECTOR_INCLUDED)
+        ) {
             return false;
         }
 
