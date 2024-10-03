@@ -22,7 +22,7 @@ To easily edit these context settings side by side, you can use the
 [CrossContextsSettings](https://modx.com/extras/package/crosscontextssettings)
 extra.
 
-!!! caution
+!!! caution "Caution with the www. prefix"
 
     Please make sure to add your `http_host` and `site_url` without `www.` when the
     `smartrouting.include_www` setting is enabled (default!)
@@ -46,7 +46,7 @@ URL to get a handy debug output. If you can't find any issue in your debug
 output feel free to [open an issue](https://github.com/Jako/SmartRouting/issues) and
 paste your debug output into the issue.
 
-!!! caution
+!!! caution "Create contexts with group `(anonymous)` access"
 
     It is important that all routable contexts in the frontend are made accessible
     for the user group `(anonymous)` with the access policy `Load Only`. Otherwise,
