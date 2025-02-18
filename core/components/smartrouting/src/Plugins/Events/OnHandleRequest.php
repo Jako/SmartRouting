@@ -132,6 +132,7 @@ class OnHandleRequest extends Plugin
         $cultureKey = $this->modx->getOption('cultureKey', null, 'en');
         $cultureKey = $this->modx->getOption('cultureKey', $_SESSION, $cultureKey, true);
         $cultureKey = $this->modx->getOption('cultureKey', $_REQUEST, $cultureKey, true);
+        $cultureKey = $this->modx->getOption('cultureKey', $_COOKIE, $cultureKey, true);
         $this->modx->cultureKey = $cultureKey;
         $this->modx->setOption('cultureKey', $cultureKey);
 
