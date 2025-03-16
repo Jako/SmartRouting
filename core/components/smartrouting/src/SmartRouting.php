@@ -2,7 +2,7 @@
 /**
  * SmartRouting
  *
- * Copyright 2023-2024 by Thomas Jakobi - <office@treehillstudio.com>
+ * Copyright 2023-2025 by Thomas Jakobi - <office@treehillstudio.com>
  *
  * Based on the code of XRouting created by Christian Seel <office@seda.digital>
  *
@@ -42,7 +42,7 @@ class SmartRouting
      * The version
      * @var string $version
      */
-    public $version = '1.0.1';
+    public $version = '1.0.2';
 
     /**
      * The class options

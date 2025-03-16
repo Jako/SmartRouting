@@ -60,10 +60,13 @@ class OnHandleRequest extends Plugin
             $matches = [];
             $matched_contexts = $contexts['_hosts'][$http_host] ?? '';
             foreach ((array)$matched_contexts as $ckey) {
-                $strpos = strpos($requestBaseUrl, $contexts[$ckey]['base_url']);
-                if ($strpos === 0) {
-                    // the longest (and first) base_url context setting will win the matches
-                    $matches[strlen($contexts[$ckey]['base_url'])] = $ckey;
+                // add only contexts that contain a not empty base_url context setting
+                if (!empty($contexts[$ckey]['base_url'])) {
+                    $strpos = strpos($requestBaseUrl, $contexts[$ckey]['base_url']);
+                    if ($strpos === 0) {
+                        // the longest (and first) base_url context setting will win the matches
+                        $matches[strlen($contexts[$ckey]['base_url'])] = $ckey;
+                    }
                 }
             }
 
@@ -80,7 +83,7 @@ class OnHandleRequest extends Plugin
                 }
 
                 // remove base_url from request query
-                if ($cSettings['base_url'] != $modxBaseUrl) {
+                if (isset($cSettings['base_url']) && $cSettings['base_url'] != $modxBaseUrl) {
                     $newRequestUrl = str_replace($cSettings['base_url'], '', $requestBaseUrl);
                     $_REQUEST[$this->modx->getOption('request_param_alias', null, 'q')] = $newRequestUrl;
                 }
