@@ -6,3 +6,4 @@
  * @subpackage lexicon
  */
 $_lang['smartrouting'] = 'SmartRouting';
+$_lang['smartrouting.refresh_cache'] = 'Leeren des [[+packagename]]-Caches';
