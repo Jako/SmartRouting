@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Use cultureKey cookie on switchContext()
+- Use cultureKey cookie on switchContext() - thanks to Jens Wittmann <https://github.com/jenswittmann>
 - Show a log entry during clearing the SmartRouting cache
 
 ## [1.0.2] - 2025-03-16
