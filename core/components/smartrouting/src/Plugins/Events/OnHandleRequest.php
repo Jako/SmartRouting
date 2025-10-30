@@ -6,6 +6,7 @@
 
 namespace TreehillStudio\SmartRouting\Plugins\Events;
 
+use modResource;
 use TreehillStudio\SmartRouting\Plugins\Plugin;
 
 class OnHandleRequest extends Plugin
@@ -14,7 +15,6 @@ class OnHandleRequest extends Plugin
 
     /**
      * Initialize the plugin event.
-     *
      * @return bool
      */
     public function init()
@@ -42,9 +42,9 @@ class OnHandleRequest extends Plugin
         }
 
         if (!empty($contexts)) {
-            $http_host = $_SERVER['HTTP_HOST'] ?? '';
+            $httpHost = $_SERVER['HTTP_HOST'] ?? '';
             if ($this->smartrouting->getOption('include_www')) {
-                $http_host = str_replace('www.', '', $http_host);
+                $httpHost = str_replace('www.', '', $httpHost);
             }
 
             // When the web context uses a base_url setting that differs from '/' calling
@@ -58,14 +58,15 @@ class OnHandleRequest extends Plugin
 
             // find matching hosts
             $matches = [];
-            $matched_contexts = $contexts['_hosts'][$http_host] ?? '';
-            foreach ((array)$matched_contexts as $ckey) {
+            $matchedContexts = $contexts['_hosts'][$httpHost] ?? '';
+            foreach ((array)$matchedContexts as $matchedContext) {
                 // add only contexts that contain a not empty base_url context setting
-                if (!empty($contexts[$ckey]['base_url'])) {
-                    $strpos = strpos($requestBaseUrl, $contexts[$ckey]['base_url']);
+                if (!empty($contexts[$matchedContext]['base_url'])) {
+                    $strpos = strpos(rtrim($requestBaseUrl, '/') . '/', $contexts[$matchedContext]['base_url']);
                     if ($strpos === 0) {
                         // the longest (and first) base_url context setting will win the matches
-                        $matches[strlen($contexts[$ckey]['base_url'])] = $ckey;
+                        $matches[strlen($contexts[$matchedContext]['base_url'])] = $matchedContext;
+                        $requestBaseUrl = (rtrim($requestBaseUrl, '/') . '/' == $contexts[$matchedContext]['base_url']) ? rtrim($requestBaseUrl, '/') . '/' : $requestBaseUrl;
                     }
                 }
             }
@@ -76,6 +77,20 @@ class OnHandleRequest extends Plugin
             if (!empty($matches)) {
                 $cSettings = $contexts[$matches[max(array_keys($matches))]];
                 $cKey = $matches[max(array_keys($matches))];
+
+                // if site_status is disabled, use the context of the site_unavailable_page
+                $siteStatus = $this->modx->getOption('site_status', $cSettings, $this->modx->getOption('site_status'));
+                if (!$siteStatus) {
+                    $siteUnavailablePage = $this->modx->getOption('site_unavailable_page', $cSettings, $this->modx->getOption('site_unavailable_page'));
+                    if ($siteUnavailablePage) {
+                        /** @var modResource $siteUnavailableResource */
+                        $siteUnavailableResource = $this->modx->getObject('modResource', $siteUnavailablePage);
+                        if ($siteUnavailableResource) {
+                            $cKey = $siteUnavailableResource->get('context_key');
+                            $cSettings = $contexts[$cKey];
+                        }
+                    }
+                }
 
                 // do we need to switch the context?
                 if ($this->modx->context->get('key') != $cKey) {
@@ -102,7 +117,13 @@ class OnHandleRequest extends Plugin
                 $this->debug('Requested URL', $_REQUEST[$this->modx->getOption('request_param_alias', null, 'q')]);
                 $this->debug('Requested URL with base_url', $requestBaseUrl);
                 $this->debug('Matched context(s) (Array key defines match quality)', print_r($matches, true));
-                $this->debug('Request will go to context', !empty($matches) ? $matches[max(array_keys($matches))] : '');
+                if ((!empty($matches)) && !$siteStatus) {
+                    $this->debug('Site Status', 'false');
+                    if ($siteUnavailablePage) {
+                        $this->debug('Site Unavailable Page', $siteUnavailablePage . ' (' . $cKey . ')');
+                    }
+                }
+                $this->debug('Request will go to context', (!empty($matches)) ? $cKey : '');
                 $this->debug('Modified request URL', $newRequestUrl ?? '');
                 $this->debug('The used cultureKey', $this->modx->cultureKey);
                 @session_write_close();

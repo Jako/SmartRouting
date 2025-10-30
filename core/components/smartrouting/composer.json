@@ -1,7 +1,7 @@
 {
   "name": "treehillstudio/smartrouting",
   "description": "Switch the context based on a (sub)domain and/or subfolder",
-  "version": "1.0.3",
+  "version": "1.0.4-pl2",
   "authors": [
     {
       "name": "Christian Seel",

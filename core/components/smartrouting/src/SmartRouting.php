@@ -42,7 +42,7 @@ class SmartRouting
      * The version
      * @var string $version
      */
-    public $version = '1.0.3';
+    public $version = '1.0.4-pl2';
 
     /**
      * The class options
