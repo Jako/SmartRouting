@@ -78,9 +78,9 @@ class OnHandleRequest extends Plugin
                 $cSettings = $contexts[$matches[max(array_keys($matches))]];
                 $cKey = $matches[max(array_keys($matches))];
 
-                // if site_status is disabled, use the context of the site_unavailable_page
+                // if site_status is disabled, use the context of the site_unavailable_page, but not when the user has the view_offline permission
                 $siteStatus = $this->modx->getOption('site_status', $cSettings, $this->modx->getOption('site_status'));
-                if (!$siteStatus) {
+                if (!$siteStatus && !$this->modx->hasPermission('view_offline')) {
                     $siteUnavailablePage = $this->modx->getOption('site_unavailable_page', $cSettings, $this->modx->getOption('site_unavailable_page'));
                     if ($siteUnavailablePage) {
                         /** @var modResource $siteUnavailableResource */
