@@ -9,7 +9,7 @@ have already configured in your context and routes based on that. It caches the
 `http_host`/`base_url`-to-context relation, so it doesn't perform excessive
 database lookups.
 
-You can also fill the `http_host_aliases` context setting with a comma separated
+You can also fill the `http_host_aliases` context setting with a comma-separated
 list to route multiple domains to one context.
 
 ## Instructions
