@@ -42,6 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Complete refactored code of XRouting:
-  - Use a service class to collect global settings and methods in one place to avoid duplicated code
-  - Separate the plugin events code into event based classes
-  - Fix some PHP warnings - i.e. PHP warning: Undefined array key "smartrouting-debug"
+
+    - Use a service class to collect global settings and methods in one place to avoid duplicated code
+    - Separate the plugin events code into event based classes
+    - Fix some PHP warnings - i.e. PHP warning: Undefined array key "xrouting-debug"
