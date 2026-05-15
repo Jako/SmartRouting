@@ -15,8 +15,8 @@ list to route multiple domains to one context.
 ## Instructions
 
 All you need to do is to install this plugin and make sure your contexts have
-`http_host`, `base_url`, `site_url`, `site_start`, `error_page` and optional
-`http_host_aliases` context settings set.
+`http_host`, `base_url`, `site_url`, `site_start`, `error_page` and optional 
+`http_host_aliases` and `unauthorized_page` context settings set.
 
 To easily edit these context settings side by side, you can use the
 [CrossContextsSettings](https://modx.com/extras/package/crosscontextssettings)
